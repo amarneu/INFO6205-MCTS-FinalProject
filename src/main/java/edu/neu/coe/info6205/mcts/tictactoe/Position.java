@@ -60,9 +60,8 @@ public class Position {
         if (player == last) throw new RuntimeException("consecutive moves by same player: " + player);
         int[][] matrix = copyGrid();
         if (matrix[x][y] < 0) {
-            // TO BE IMPLEMENTED 
-             return null;
-            // END SOLUTION
+            matrix[x][y] = player;
+            return new Position(matrix, count + 1, player);
         }
         throw new RuntimeException("Position is occupied: " + x + ", " + y);
     }
