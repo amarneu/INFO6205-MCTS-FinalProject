@@ -139,10 +139,28 @@ public class Position {
      * @return true if there are three cells in a line that are the same and equal to the last player.
      */
     boolean threeInARow() {
-        // TO BE IMPLEMENTED 
-         return false;
-        // END SOLUTION
+        // Check rows
+        for (int i = 0; i < gridSize; i++) {
+            if (grid[i][0] != blank && grid[i][0] == grid[i][1] && grid[i][1] == grid[i][2]) {
+                return true;
+            }
+        }
+        // Check columns
+        for (int j = 0; j < gridSize; j++) {
+            if (grid[0][j] != blank && grid[0][j] == grid[1][j] && grid[1][j] == grid[2][j]) {
+                return true;
+            }
+        }
+        // Check diagonals
+        if (grid[0][0] != blank && grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2]) {
+            return true;
+        }
+        if (grid[0][2] != blank && grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0]) {
+            return true;
+        }
+        return false;
     }
+
 
     /**
      * Project row i.
