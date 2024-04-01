@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static edu.neu.coe.info6205.mcts.tictactoe.TicTacToe.blank;
+
 /**
  * This class represents the board of the Tic-tac-toe game.
  * It is a 3x3 matrix of 0s, 1s, and -1s for O, X, and . respectively.
@@ -76,10 +78,8 @@ public class Position {
         List<int[]> result = new ArrayList<>();
         for (int i = 0; i < gridSize; i++)
             for (int j = 0; j < gridSize; j++)
-                if (grid[i][j] < 0)
-                    // TO BE IMPLEMENTED 
-         ;
-        // END SOLUTION
+                if (grid[i][j] < 0 || grid[i][j] == blank)
+                    result.add(new int[]{i,j});
         return result;
     }
 
