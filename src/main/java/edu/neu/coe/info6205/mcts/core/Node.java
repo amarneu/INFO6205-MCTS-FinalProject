@@ -74,4 +74,28 @@ public interface Node<G extends Game> {
             addChild(state.next(it.next()));
     }
 
+    /**
+     * Method to get the parent of this Node.
+     *
+     * @return the parent Node.
+     */
+    Node<G> getParent();
+
+    /**
+     * Method to set the number of wins for this Node.
+     *
+     * @param wins the number of wins.
+     */
+
+    void setWins(int wins);
+
+    /**
+     * Method to set the number of playouts for this Node.
+     *
+     * @param playouts the number of playouts.
+     */
+
+
+    void setPlayouts(int playouts);
+
 }

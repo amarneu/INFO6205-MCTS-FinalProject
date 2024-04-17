@@ -95,7 +95,23 @@ public class TicTacToeNode implements Node<TicTacToe> {
 
     private final State<TicTacToe> state;
     private final ArrayList<Node<TicTacToe>> children;
+    private Node<TicTacToe> parent;
 
     private int wins;
     private int playouts;
+    @Override
+    public Node<TicTacToe> getParent() {
+        return parent;
+    }
+
+    @Override
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    @Override
+    public void setPlayouts(int playouts) {
+        this.playouts = playouts;
+    }
+
 }
