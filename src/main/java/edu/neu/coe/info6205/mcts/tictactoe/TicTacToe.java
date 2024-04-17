@@ -2,6 +2,7 @@ package edu.neu.coe.info6205.mcts.tictactoe;
 
 import edu.neu.coe.info6205.mcts.core.Game;
 import edu.neu.coe.info6205.mcts.core.Move;
+import edu.neu.coe.info6205.mcts.core.Node;
 import edu.neu.coe.info6205.mcts.core.State;
 
 import java.util.*;
@@ -42,11 +43,29 @@ public class TicTacToe implements Game<TicTacToe> {
      */
     State<TicTacToe> runGame() {
         State<TicTacToe> state = start();
-        int player = opener();
+        MCTS mcts = new MCTS(new TicTacToeNode(state));
         while (!state.isTerminal()) {
-            state = state.next(state.chooseMove(player));
-            player = 1 - player;
+            System.out.println(state.toString());
+            for (int i = 0; i < 1000; i++) {
+                // Selection
+                Node<TicTacToe> node = mcts.selectOptimalChildNode(MCTS.root);
+                // Simulation
+                int result = mcts.simulate(node);
+                // Backpropagation
+                mcts.backpropagate(node, result);
+            }
+            // Assuming selectOptimalChildNode correctly chooses the best move
+            Node<TicTacToe> optMove = mcts.selectOptimalChildNode(MCTS.root);
+            if (optMove == null) {
+                throw new IllegalStateException("MCTS did not return a move");
+            }
+            // Update the game state to the best move's state
+            state = optMove.state();
+
+            // Reset the root of the MCTS to the new state for the next player's move
+            MCTS.root = new TicTacToeNode(state);
         }
+        System.out.println(state.toString());
         return state;
     }
 
