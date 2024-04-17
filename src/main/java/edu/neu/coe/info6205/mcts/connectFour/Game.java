@@ -31,7 +31,7 @@ public class Game {
         }
     }
 
-    private boolean takeTurn() {
+    boolean takeTurn() {
         board.displayBoard();
         int columnChoice = rng.nextInt(7); // Change this if the number of columns changes
         if (!board.placeToken(columnChoice, activePlayer.getToken())) {
@@ -58,4 +58,5 @@ public class Game {
     private void switchActivePlayer() {
         activePlayer = (activePlayer == firstPlayer) ? secondPlayer : firstPlayer;
     }
+
 }
