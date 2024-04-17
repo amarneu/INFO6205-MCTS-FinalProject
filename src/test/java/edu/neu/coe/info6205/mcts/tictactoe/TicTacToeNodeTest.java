@@ -32,16 +32,25 @@ public class TicTacToeNodeTest {
 
     @Test
     public void children() {
-        // no tests yet
+        TicTacToe.TicTacToeState state = new TicTacToe().new TicTacToeState();
+        TicTacToeNode node = new TicTacToeNode(state);
+        assertEquals(0, node.children().size());
     }
 
     @Test
     public void addChild() {
-        // no tests yet
+        TicTacToe.TicTacToeState state = new TicTacToe().new TicTacToeState();
+        TicTacToeNode node = new TicTacToeNode(state);
+        node.addChild(state);
+        assertEquals(1, node.children().size());
+        
     }
 
     @Test
     public void backPropagate() {
-        // no tests yet
+        TicTacToe.TicTacToeState state = new TicTacToe().new TicTacToeState();
+        TicTacToeNode node = new TicTacToeNode(state);
+        node.backPropagate();
+        assertEquals(0, node.playouts());
     }
 }
