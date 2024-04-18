@@ -10,5 +10,27 @@ public class PlayerTest {
         Player player = new Player('A');
         assertEquals('A', player.getToken());
     }
+
+    @Test
+    public void testEquals() {
+        Player player1 = new Player('X');
+        Player player2 = new Player('X');
+        assertTrue(player1.equals(player2));
+    }
+
+    @Test
+    public void testNotEquals() {
+        Player player1 = new Player('X');
+        Player player2 = new Player('O');
+        assertFalse(player1.equals(player2));
+    }
+
+    @Test
+    public void testHashCode() {
+        Player player1 = new Player('X');
+        Player player2 = new Player('X');
+        assertEquals(player1.hashCode(), player2.hashCode());
+    }
+
 }
 
