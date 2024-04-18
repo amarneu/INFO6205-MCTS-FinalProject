@@ -1,9 +1,9 @@
 package edu.neu.coe.info6205.mcts.connectFour;
 
-import edu.neu.coe.info6205.mcts.connectFour.Board;
-import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
+
 public class BoardTest {
 
     @Test
@@ -26,8 +26,10 @@ public class BoardTest {
     @Test
     public void testIsGridFull() {
         Board board = new Board();
-        for (int i = 0; i < 42; i++) {
-            board.placeToken(0, 'A');
+        for (int i = 0; i < board.getNumRows(); i++) {
+            for (int j = 0; j < board.getNumColumns(); j++) {
+                board.placeToken(j, 'A');
+            }
         }
         assertTrue(board.isGridFull());
     }
@@ -41,4 +43,5 @@ public class BoardTest {
         board.placeToken(3, 'A');
         assertTrue(board.checkVictory('A'));
     }
+
 }
