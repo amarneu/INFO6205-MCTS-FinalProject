@@ -1,18 +1,20 @@
 package edu.neu.coe.info6205.mcts.connectFour;
 
 import java.util.Random;
+
 public class Game {
-    private Board board;
-    private Player firstPlayer;
-    private Player secondPlayer;
-    private Player activePlayer;
-    private Random rng = new Random();
+    private Board board; // The game board
+    private Player firstPlayer; // The first player
+    private Player secondPlayer; // The second player
+    private Player activePlayer; // The currently active player
+    private Random rng = new Random(); // Random number generator for making random moves
 
     public Game() {
         initializeGame();
     }
 
     private void initializeGame() {
+        // Initialize the game components
         board = new Board();
         firstPlayer = new Player('A');
         secondPlayer = new Player('O');
@@ -20,11 +22,13 @@ public class Game {
     }
 
     private void chooseStartingPlayer() {
+        // Randomly choose the starting player
         activePlayer = rng.nextBoolean() ? firstPlayer : secondPlayer;
         System.out.println("Player " + activePlayer.getToken() + " starts the game");
     }
 
     public void start() {
+        // Start the game loop
         boolean isGameOver = false;
         while (!isGameOver) {
             isGameOver = takeTurn();
@@ -32,9 +36,11 @@ public class Game {
     }
 
     boolean takeTurn() {
-        board.displayBoard();
-        int columnChoice = rng.nextInt(7); // Change this if the number of columns changes
+        // Take a turn in the game
+        board.displayBoard(); // Display the current board state
+        int columnChoice = rng.nextInt(7); // Randomly choose a column (assuming 7 columns)
         if (!board.placeToken(columnChoice, activePlayer.getToken())) {
+            // If the chosen column is full, try again
             System.out.println("Column " + columnChoice + " is full, try again.");
             return false;
         }
@@ -42,15 +48,18 @@ public class Game {
         System.out.println("Player " + activePlayer.getToken() + " placed a token in column " + columnChoice);
 
         if (board.checkVictory(activePlayer.getToken())) {
+            // If the active player has won, display the board and announce the winner
             board.displayBoard();
             System.out.println("Player " + activePlayer.getToken() + " wins!");
             return true;
         } else if (board.isGridFull()) {
+            // If the board is full and no one has won, it's a draw
             board.displayBoard();
             System.out.println("The game is a draw!");
             return true;
         }
 
+        // Switch to the next player
         switchActivePlayer();
         return false;
     }
@@ -80,8 +89,10 @@ public class Game {
     }
 
     void switchActivePlayer() {
+        // Switch the active player
         activePlayer = (activePlayer == firstPlayer) ? secondPlayer : firstPlayer;
     }
+
     public Board getBoard() {
         return board;
     }
@@ -97,5 +108,4 @@ public class Game {
     public Player getActivePlayer() {
         return activePlayer;
     }
-
 }
