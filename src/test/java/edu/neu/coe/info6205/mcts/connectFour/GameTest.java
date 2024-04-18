@@ -47,4 +47,49 @@ public class GameTest {
         assertEquals(secondPlayer, game.getActivePlayer());
     }
 
+    @Test
+    public void testGameContinuation() {
+        Game game = new Game();
+        Board board = game.getBoard();
+        Player firstPlayer = game.getFirstPlayer();
+        // Make a non-winning, non-drawing move
+        board.placeToken(0, firstPlayer.getToken());
+        // The game should not be over
+        assertFalse(board.checkVictory(firstPlayer.getToken()) || board.isGridFull());
+    }
+
+    @Test
+    public void testInvalidMove() {
+        Game game = new Game();
+        Board board = game.getBoard();
+        // Fill a column
+        for (int i = 0; i < board.getNumRows(); i++) {
+            assertTrue(board.placeToken(0, 'X'));
+        }
+        // Attempt to place another token in the full column
+        assertFalse(board.placeToken(0, 'X'));
+    }
+
+    @Test
+    public void testRepeatedPlayerSwitching() {
+        Game game = new Game();
+        Player initialPlayer = game.getActivePlayer();
+        game.switchActivePlayer();
+        game.switchActivePlayer();
+        assertEquals(initialPlayer, game.getActivePlayer());
+    }
+
+    @Test
+    public void testPlayerWinsGame() {
+        Game game = new Game();
+        Board board = game.getBoard();
+        Player firstPlayer = game.getFirstPlayer();
+        // Create a winning condition
+        board.placeToken(0, firstPlayer.getToken());
+        board.placeToken(0, firstPlayer.getToken());
+        board.placeToken(0, firstPlayer.getToken());
+        board.placeToken(0, firstPlayer.getToken());
+        assertTrue(board.checkVictory(firstPlayer.getToken()));
+    }
+
 }
