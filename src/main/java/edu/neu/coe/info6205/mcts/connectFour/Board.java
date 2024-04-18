@@ -85,4 +85,19 @@ public class Board {
 
         return false;
     }
+    public char[][] getGameBoard() {
+        return gameBoard;
+    }
+
+    public int getNumRows() {
+        return numRows;
+    }
+
+    public int getNumColumns() {
+        return numColumns;
+    }
+
+    public void setGameBoard(char[][] gameBoard) {
+        this.gameBoard = gameBoard;
+    }
 }
