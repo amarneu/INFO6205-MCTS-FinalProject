@@ -55,8 +55,47 @@ public class Game {
         return false;
     }
 
-    private void switchActivePlayer() {
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public void setFirstPlayer(Player firstPlayer) {
+        this.firstPlayer = firstPlayer;
+    }
+
+    public void setSecondPlayer(Player secondPlayer) {
+        this.secondPlayer = secondPlayer;
+    }
+
+    public void setActivePlayer(Player activePlayer) {
+        this.activePlayer = activePlayer;
+    }
+
+    public Random getRng() {
+        return rng;
+    }
+
+    public void setRng(Random rng) {
+        this.rng = rng;
+    }
+
+    void switchActivePlayer() {
         activePlayer = (activePlayer == firstPlayer) ? secondPlayer : firstPlayer;
+    }
+    public Board getBoard() {
+        return board;
+    }
+
+    public Player getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    public Player getSecondPlayer() {
+        return secondPlayer;
+    }
+
+    public Player getActivePlayer() {
+        return activePlayer;
     }
 
 }
